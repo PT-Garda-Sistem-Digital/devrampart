@@ -38,7 +38,7 @@ Zero permission hell, DevPod ready, production-grade image, dan security scan ot
 
 ```bash
 # 1. Clone starter kit
-git clone https://github.com/username/devrampart.git my-new-project
+git clone https://github.com/PT-Garda-Sistem-Digital/devrampart.git my-new-project
 cd my-new-project
 
 # 2. Jalankan development (paling sering)
