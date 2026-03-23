@@ -6,7 +6,7 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 ![DevPod](https://img.shields.io/badge/DevPod-Ready-00C4B4)
 
-DevRampart adalah starter kit Docker yang sudah di-hardened sesuai standar internasional\
+DevRampart adalah starter kit Docker yang sudah di-hardened sesuai standar internasional\. Default Setup Nuxt.js
 Satu kali clone → customize → langsung pakai di semua project kamu.  
 Zero permission hell, DevPod ready, production-grade image, dan security scan otomatis.
 
