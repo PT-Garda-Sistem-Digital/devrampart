@@ -1,0 +1,31 @@
+{
+    "name": "DevRampart SecKit",
+    "dockerComposeFile": [
+        "../docker-compose.yml",
+        "../docker-compose.override.yml"
+    ],
+    "service": "nuxt-app",
+    "workspaceFolder": "/app",
+    "remoteUser": "node",
+    "features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+            "version": "latest",
+            "enableNonRootDocker": "true",
+            "moby": true
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "Vue.volar",
+                "esbenp.prettier-vscode",
+                "exiasr.hadolint",
+                "aquasecurity.trivy-vulnerability-scanner"
+            ]
+        }
+    },
+    "postCreateCommand": "make init",
+    "forwardPorts": [
+        3000
+    ]
+}

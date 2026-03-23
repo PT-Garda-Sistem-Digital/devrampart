@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "[INFO] Menjalankan Pre-commit Security Checks..."
+./scripts/verify-secrets.sh
+npx pre-commit run --all-files
