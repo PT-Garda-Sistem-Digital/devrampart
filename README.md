@@ -6,26 +6,51 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 ![DevPod](https://img.shields.io/badge/DevPod-Ready-00C4B4)
 
-DevRampart adalah starter kit Docker yang sudah di-hardened sesuai standar internasional\. Default Setup Nuxt.js
-Satu kali clone → customize → langsung pakai di semua project kamu.  
-Zero permission hell, DevPod ready, production-grade image, dan security scan otomatis.
+DevRampart is a Docker starter kit that has been hardened according to international standards.
+One-time clone → customize → use directly across all your projects.
+Zero permission hell, DevPod ready, production-grade image, and automatic security scanning.
 
----
+### 🎯 Key Features
+
+- **Hardened Docker Setup** — Docker configuration that is secure according to security standards
+- **Default Setup Nuxt.js** — Pre-configured for Nuxt.js projects
+- **Zero Permission Hell** — No complicated permission issues
+- **DevPod Ready** — Can be used directly with DevPod/VS Code DevContainers
+- **Production-Grade Image** — Image ready for production
+- **Automatic Security Scan** — Automatic CVE scanning
+
+# Project Structure
+
+```
+devrampart/
+├── docker/
+│   ├── Dockerfile          # Image definition
+│   ├── daemon-local.json   # Docker daemon config
+│   └── entrypoint.sh       # Entry point script
+├── scripts/
+│   ├── init-local.sh       # Local initialization
+│   └── verify-secrets.sh   # Secrets checker
+├── docker-compose.yml      # Base compose
+├── docker-compose.prod.yml # Production config
+├── Makefile                # Command shortcuts
+└── README.md               # Documentation
+```
 
 # Quick Start
 
+## 1. GitHub Template Repository (Recommended - Cleanest & Official)
 
-## 1. GitHub Template Repository (Recommended - Paling Bersih & Resmi)
+This repository is set up as a template repository, allowing you to create a new project without git history.
 
-Repository ini sudah diatur sebagai template repository, memungkinkan Anda membuat project baru tanpa git history.
+### Using Browser:
 
-### Menggunakan Browser:
-1. Buka: https://github.com/PT-Garda-Sistem-Digital/devrampart
-2. Klik tombol hijau **"Use this template"** → **"Create a new repository"**
-3. Beri nama repository baru (contoh: `my-app`)
-4. Klik **Create repository**
+1. Open: https://github.com/PT-Garda-Sistem-Digital/devrampart
+2. Click the green button **"Use this template"** → **"Create a new repository"**
+3. Name your new repository (example: `my-app`)
+4. Click **Create repository**
 
-### Menggunakan GitHub CLI (One-Command):
+### Using GitHub CLI (One-Command):
+
 ```bash
 gh repo create my-new-project \
   --template PT-Garda-Sistem-Digital/devrampart \
@@ -35,47 +60,45 @@ gh repo create my-new-project \
 cd my-new-project
 ```
 
----
+## 2. npx degit (Super Fast - Without Git History)
 
-## 2. npx degit (Super Cepat - Tanpa Git History)
+The fastest method to clone a template without full git history.
 
-Metode tercepat untuk clone template tanpa git history lengkap.
+### From GitHub Repository (Recommended - Always Latest Version):
 
-### Dari GitHub Repository (Recommended - Selalu Versi Terbaru):
 ```bash
 npx degit PT-Garda-Sistem-Digital/devrampart my-new-project
 cd my-new-project
 ```
 
-### Dari npm Registry (Saat Publish):
+### From npm Registry (When Published):
+
 ```bash
-# Setelah package dipublikasi ke npm
+# After package is published to npm
 npx devrampart@latest my-new-project
 cd my-new-project
 ```
 
----
+## 3. Git Clone (Fallback - With Git History)
 
-## 3. Git Clone (Fallback - Dengan Git History)
-
-Metode tradisional yang mengklone seluruh git history.
+Traditional method that clones the entire git history.
 
 ```bash
 git clone https://github.com/PT-Garda-Sistem-Digital/devrampart.git my-new-project
 cd my-new-project
 ```
 
----
-
-## 4. Metode Alternatif Tambahan
+## 4. Additional Alternative Methods
 
 ### Via curl + Install Script:
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/PT-Garda-Sistem-Digital/devrampart/main/install.sh | bash -s -- my-new-project
 cd my-new-project
 ```
 
-### Via Git Clone + rsync (Offline atau Custom):
+### Via Git Clone + rsync (Offline or Custom):
+
 ```bash
 git clone https://github.com/PT-Garda-Sistem-Digital/devrampart.git temp-devrampart
 rsync -a --exclude='.git' temp-devrampart/ my-new-project/
@@ -83,105 +106,110 @@ rm -rf temp-devrampart
 cd my-new-project
 ```
 
-### Via GitHub ZIP Download (Tanpa Git):
-1. Buka: https://github.com/PT-Garda-Sistem-Digital/devrampart
-2. Klik tombol hijau **Code** → **Download ZIP**
-3. Ekstrak ZIP ke folder baru (misal `my-new-project`)
-4. Masuk ke folder:
+### Via GitHub ZIP Download (Without Git):
+
+1. Open: https://github.com/PT-Garda-Sistem-Digital/devrampart
+2. Click the green button **Code** → **Download ZIP**
+3. Extract ZIP to a new folder (e.g., `my-new-project`)
+4. Enter the folder:
    ```bash
    cd my-new-project
    ```
 
----
+## Installation Methods Comparison
 
-## Perbandingan Metode Instalasi
-
-| Metode | Kecepatan | Kemudahan | Git History | Rekomendasi |
-|--------|-----------|-----------|-------------|------------|
-| Template Browser | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ✓ | Untuk UI-friendly |
-| GitHub CLI | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ✓ | Untuk developer |
-| degit | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ✗ | **Recommended** |
-| Git Clone | ⭐⭐⭐ | ⭐⭐⭐⭐ | ✓ | Fallback |
-| ZIP Download | ⭐⭐⭐⭐ | ⭐⭐ | ✗ | Offline mode |
-
----
+| Method           | Speed      | Ease of Use | Git History | Recommendation  |
+| ---------------- | ---------- | ----------- | ----------- | --------------- |
+| Template Browser | ⭐⭐⭐     | ⭐⭐⭐⭐⭐  | ✓           | For UI-friendly |
+| GitHub CLI       | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐    | ✓           | For developers  |
+| degit            | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐    | ✗           | **Recommended** |
+| Git Clone        | ⭐⭐⭐     | ⭐⭐⭐⭐    | ✓           | Fallback        |
+| ZIP Download     | ⭐⭐⭐⭐   | ⭐⭐        | ✗           | Offline mode    |
 
 ## Troubleshooting
 
 **Error: `make: command not found`**
-- Install Make: `brew install make` (macOS) atau `sudo apt-get install make` (Linux)
+
+- Install Make: `brew install make` (macOS) or `sudo apt-get install make` (Linux)
 
 **Error: `docker: command not found`**
+
 - Install Docker Desktop: https://www.docker.com/products/docker-desktop
 
-**Error saat clone GitHub**
-- Pastikan Git terinstall: `git --version`
-- Setup GitHub auth jika diperlukan: https://docs.github.com/en/authentication
+**Error when cloning GitHub**
 
----
+- Make sure Git is installed: `git --version`
+- Setup GitHub auth if needed: https://docs.github.com/en/authentication
 
-Berikut adalah alur kerja operasional standar untuk *Starter Kit Devrampart* Anda:
+Here is the standard operational workflow for your DevRampart Starter Kit:
 
-### Tahap 1: Inisialisasi Pertama Kali (Wajib Dilakukan Sekali)
+### Stage 1: First Initialization (Must Be Done Once)
 
-Setelah Anda memindahkan seluruh file ke repositori lokal Anda, jalankan langkah ini untuk mengaktifkan semua "satpam" lokal Anda.
+After you move all files to your local repository, run this step to activate all your local "security guards".
 
-1. **Buka Terminal di direktori *root* (`<nama-project-anda>/`).**
-2. **Jalankan perintah inisialisasi:**
+1. **Open Terminal in the _root_ directory (`<your-project-name>/`).**
+2. **Run the initialization command:**
+
    ```bash
    make init
    ```
-   *Apa yang terjadi di balik layar?* Perintah ini akan menyalin `.env.example` menjadi `.env`, memberikan hak eksekusi pada skrip, dan memasang Husky (Git Hooks).
-3. **Buat *Baseline* Rahasia (Standar OWASP):**
-   Agar `detect-secrets` mengenali status awal repositori Anda dan tidak memblokir kode yang sah, buat file *baseline* dengan perintah ini:
+
+   _What's happening behind the scenes?_ This command will copy `.env.example` to `.env`, give execute permissions to scripts, and install Husky (Git Hooks).
+
+3. **Create Secrets Baseline (OWASP Standard):**
+   So that `detect-secrets` recognizes the initial state of your repository and doesn't block legitimate code, create a baseline file with this command:
+
    ```bash
    npx detect-secrets scan > .secrets.baseline
    ```
 
-### Tahap 2: Siklus Kerja Harian (Lokal Dev / Tier 1)
+### Stage 2: Daily Work Cycle (Local Dev)
 
-Bagi developer, mereka tidak perlu memikirkan kerumitan keamanan saat sedang *ngoding*.
+For developers, they don't need to worry about security complexities while coding.
 
-* **Jika menggunakan DevPod / VS Code DevContainers (Direkomendasikan):**
-  Cukup buka proyek ini menggunakan DevPod. Sistem akan otomatis membangun container, membaca `devcontainer.json`, dan Anda langsung berada di dalam lingkungan Node.js yang aman dengan linter (Hadolint/Trivy) aktif di editor.
-* **Jika menggunakan Terminal Biasa:**
-  Jalankan perintah berikut untuk menyalakan Nuxt.js dengan fitur *Live-Reload*:
+- **If using DevPod / VS Code DevContainers (Recommended):**
+  Simply open this project using DevPod. The system will automatically build the container, read `devcontainer.json`, and you'll be in a secure Node.js environment with active linters (Hadolint/Trivy) in the editor.
+- **If using Regular Terminal:**
+  Run the following command to start Nuxt.js with _Live-Reload_ enabled:
+
   ```bash
   make dev
   ```
-  Aplikasi akan berjalan di `http://localhost:3000`. Jika Anda mengubah file `.vue` atau `.ts`, perubahannya akan langsung terlihat tanpa perlu *restart*.
 
-### Tahap 3: Validasi Keamanan (Otomatis & Manual)
+  The application will run at `http://localhost:3000`. If you change `.vue` or `.ts` files, changes will be visible immediately without needing to _restart_.
 
-Sistem ini dirancang untuk "membantah" dan memblokir developer jika mereka melakukan kesalahan yang melanggar standar.
+### Stage 3: Security Validation (Automatic & Manual)
 
-* **Otomatis saat `git commit`:**
-  Ketika Anda menjalankan `git commit -m "fitur baru"`, Husky akan memicu `verify-secrets.sh` dan `.pre-commit-config.yaml`. Jika Anda tidak sengaja menempelkan *API Key* AWS atau *Private Key* ke dalam kode, **commit akan digagalkan seketika**. Anda harus menghapus kunci tersebut sebelum bisa melakukan *commit*.
-* **Pengecekan Kepatuhan Dockerfile:**
-  Untuk memastikan tidak ada yang merusak standar keamanan `Dockerfile`:
+This system is designed to "argue" and block developers if they make mistakes that violate standards.
+
+- **Automatic during `git commit`:**
+  When you run `git commit -m "new feature"`, Husky will trigger `verify-secrets.sh` and `.pre-commit-config.yaml`. If you accidentally paste AWS _API Key_ or _Private Key_ into code, **the commit will be rejected immediately**. You must remove the key before you can commit.
+- **Dockerfile Compliance Check:**
+  To ensure no one breaks the Dockerfile security standards:
   ```bash
   make lint
   ```
-* **Pemindaian Kerentanan CVE:**
-  Sebelum melakukan *Push* ke GitHub/GitLab, Anda bisa menyimulasikan apa yang akan dilakukan oleh CI/CD Pipeline:
+- **CVE Vulnerability Scanning:**
+  Before pushing to GitHub/GitLab, you can simulate what the CI/CD Pipeline will do:
   ```bash
   make scan
   ```
 
-### Tahap 4: Pengujian Ketahanan Produksi (Tier 3)
+### Stage 4: Production Resilience Testing
 
-Penting untuk menguji apakah aplikasi Anda (Nuxt Nitro) bisa bertahan hidup di lingkungan produksi yang "lumpuh" (Read-only filesystem, tanpa akses root, tanpa kapabilitas kernel).
+It's important to test whether your application (Nuxt Nitro) can survive in a "crippled" production environment (Read-only filesystem, no root access, no kernel capabilities).
 
-Untuk menyimulasikan lingkungan *Production* di laptop Anda, jalankan:
+To simulate the Production environment on your laptop, run:
+
 ```bash
 make prod
 ```
-*Catatan:* Di mode ini, *Live-Reload* mati. Container akan dikunci total sesuai standar. Jika aplikasi Anda diam-diam mencoba menulis file ke `/app/logs` atau `/etc`, aplikasi akan *crash* dan Anda akan menyadari adanya pelanggaran keamanan sebelum kode tersebut mencapai *server* produksi asli.
 
----
+_Note:_ In this mode, _Live-Reload_ is disabled. The container will be fully locked down according to standards. If your application secretly tries to write to `/app/logs` or `/etc`, the application will _crash_ and you'll realize there's a security violation before that code reaches the actual production server.
 
-**Membersihkan Sistem:**
-Jika Anda sudah selesai bekerja dan ingin mematikan semua container serta membersihkan *cache* agar laptop tidak berat:
+**Cleaning the System:**
+If you're done working and want to shut down all containers and clean up _cache_ so your laptop doesn't get heavy:
+
 ```bash
 make clean
 ```
